@@ -54,3 +54,16 @@ searchBtn.addEventListener("click", () => {
     console.log("Please enter a city name");
   }
 });
+
+Input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const city = Input.value.trim();
+    if (city) {
+      weather(city);
+    } else {
+      console.log("Please enter a city name");
+    }
+  }
+});
+
+
