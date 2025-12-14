@@ -1,69 +1,79 @@
-const Input = document.querySelector('.Input');
-const searchBtn = document.querySelector('.search-icon');
-const temp = document.querySelector('.temp');
-const humidity = document.querySelector('.humidity');
-const wind = document.querySelector('.wind');
-const cityEl = document.querySelector('.city');
-const weatherIcon = document.querySelector('.weather-icon');
+const Input = document.querySelector(".Input");
+const searchBtn = document.querySelector(".search-icon");
+const temp = document.querySelector(".temp");
+const humidity = document.querySelector(".humidity");
+const wind = document.querySelector(".wind");
+const cityEl = document.querySelector(".city");
+const weatherIcon = document.querySelector(".weather-icon");
+const timeOfDayEl = document.querySelector(".time-of-day");
+const localTimeEl = document.querySelector(".local-time");
+const errorEl = document.querySelector(".error");
 
-async function weather(city){
-  const apiKey="49a01200bf6939d95961e545ccae312b";
-  try{
-    const result = await fetch(
+async function weather(city) {
+  const apiKey = "49a01200bf6939d95961e545ccae312b";
+
+  try {
+    errorEl.classList.add("hide");
+
+    const res = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
     );
-    if(!result.ok){
-      throw new Error(`Http error! status: ${result.status}`);
-    }
-    const data = await result.json();
-    console.log(data);
+
+    if (!res.ok) throw new Error("City not found");
+
+    const data = await res.json();
 
     cityEl.textContent = data.name;
-    wind.innerHTML = `${Math.round(data.wind.speed)}  km/h<br>Wind Speed`;
-    humidity.innerHTML = `${data.main.humidity}%<br>Humidity`;
     temp.textContent = `${Math.round(data.main.temp)}°C`;
+    humidity.innerHTML = `${data.main.humidity}%<br>Humidity`;
+    wind.innerHTML = `${Math.round(data.wind.speed)} km/h<br>Wind Speed`;
 
-    
-    const condition = data.weather[0].main;
-    console.log(condition);
-    if (condition === "Clouds") {
-      weatherIcon.src = "clouds.png";
-    } else if (condition === "Clear") {
-      weatherIcon.src = "clear.png";
-    } else if (condition === "Drizzle") {
-      weatherIcon.src = "drizzle.png";
-    } else if (condition === "Rain") {
-      weatherIcon.src = "rain.png";
-    } else if (condition === "Snow") {
-      weatherIcon.src = "snow.png";
-    } else {
-      weatherIcon.src = "default.png";
-    }
+    setWeatherImageAndTheme(data.weather[0]);
+    setLocalTime(data.timezone);
 
-  } catch(error){
-    console.error("Error fetching data:", error);
+  } catch (error) {
+    errorEl.classList.remove("hide");
   }
 }
 
 
-searchBtn.addEventListener("click", () => {
+
+function setWeatherImageAndTheme(weatherData) {
+  const id = weatherData.id;
+  const isDay = weatherData.icon.includes("d");
+
+  timeOfDayEl.textContent = isDay ? "🌞 Day" : "🌙 Night";
+  document.body.classList.toggle("night", !isDay);
+
+  if (id >= 200 && id <= 232) weatherIcon.src = "rain.png";
+  else if (id >= 300 && id <= 321) weatherIcon.src = "drizzle.png";
+  else if (id >= 500 && id <= 531) weatherIcon.src = "rain.png";
+  else if (id >= 600 && id <= 622) weatherIcon.src = "snow.png";
+  else if (id >= 701 && id <= 781) weatherIcon.src = "mist.png";
+  else if (id === 800) weatherIcon.src = "clear.png";
+  else weatherIcon.src = "clouds.png";
+}
+
+
+
+function setLocalTime(timezoneOffset) {
+  const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+  const local = new Date(utc + timezoneOffset * 1000);
+
+  localTimeEl.textContent =
+    "🕒 " +
+    local.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+
+
+function handleSearch() {
   const city = Input.value.trim();
-  if(city){
-    weather(city);
-  } else {
-    console.log("Please enter a city name");
-  }
+  if (city) weather(city);
+}
+
+searchBtn.addEventListener("click", handleSearch);
+
+Input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") handleSearch();
 });
-
-Input.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    const city = Input.value.trim();
-    if (city) {
-      weather(city);
-    } else {
-      console.log("Please enter a city name");
-    }
-  }
-});
-
-
