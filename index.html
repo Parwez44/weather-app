@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather App</title>
-  <link rel="stylesheet" href="weather.css">
+  <link rel="stylesheet" href="weather.css" />
 </head>
 <body>
+
   <div class="card">
-    
+
     <div class="searchbar">
-      <input class="Input" type="text" placeholder="Enter city name">
+      <input class="Input" type="text" placeholder="Enter city name" />
       <div class="search-icon">
         <img src="search.png" alt="Search">
       </div>
     </div>
 
     <div class="weather">
-      <img src="clouds.png" alt="Weather Icon" class="weather-icon">
-      <h1 class="temp">22°C</h1>
-      <h2 class="city">New York</h2>
+      <img src="clouds.png" class="weather-icon" alt="Weather Icon">
+      <h1 class="temp">--°C</h1>
+      <h2 class="city">City</h2>
+      <p class="time-of-day"></p>
+      <p class="local-time"></p>
     </div>
 
-    
+    <p class="error hide">❌ City not found</p>
+
     <div class="details">
       <div class="col">
         <img src="humidity.png" alt="Humidity">
-        <div>
-          <p class="humidity">60% <br>Humidity</p>
-        </div>
+        <p class="humidity">--%<br>Humidity</p>
       </div>
 
       <div class="col">
         <img src="wind.png" alt="Wind">
-        <div>
-          <p class="wind">10 km/h <br>Wind Speed</p>
-        </div>
+        <p class="wind">-- km/h<br>Wind Speed</p>
       </div>
     </div>
 
   </div>
-<script src="weather.js" ></script>
-<footer>
-  <p>© 2025 All Rights Reserved | Parwez Khan</p>
-</footer>
 
+  <script src="weather.js"></script>
 </body>
 </html>
