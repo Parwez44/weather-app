@@ -1,206 +1,201 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #2af598, #009efd);
-    font-family: 'Josefin Sans', sans-serif;
-    color: white;
-    text-align: center;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2af598, #009efd);
+  font-family: 'Josefin Sans', sans-serif;
+  color: whitesmoke;
+  text-align: center;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    max-width: 420px;
-    padding: 25px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.055);
-    animation: fadeIn 0.8s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-
 .searchbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    padding: 6px;
-    border-radius: 30px;
-    margin-bottom: 35px;
-    transition: 0.3s;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.055);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px;
+  border-radius: 30px;
+  margin-bottom: 35px;
+  transition: 0.3s ease;
 }
 
 .searchbar:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .searchbar input {
-    border: none;
-    outline: none;
-    padding: 12px 15px;
-    border-radius: 25px;
-    font-size: 16px;
-    background: transparent;
-    color:whitesmoke;
-    flex: 1;
-    font-family: 'Josefin Sans', sans-serif;
+  border: none;
+  outline: none;
+  padding: 12px 15px;
+  border-radius: 25px;
+  font-size: 16px;
+  background: transparent;
+  color: #000;
+  flex: 1;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .searchbar input::placeholder {
-    color:whitesmoke;
-    font-family: 'Josefin Sans', sans-serif;
-
-    
-
+  color: #333;
 }
 
 .searchbar .search-icon {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(30px);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .searchbar .search-icon:hover {
-    transform: rotate(10deg) scale(1.1);
+  transform: rotate(10deg) scale(1.1);
 }
 
 .search-icon img {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
+  width: 18px;
+  height: 18px;
 }
 
-
 .weather {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .weather-icon {
-    height: 8rem;
-    width: 8rem;
-    animation: float 3s ease-in-out infinite;
+  height: 8rem;
+  width: 8rem;
+  animation: float 3s ease-in-out infinite;
 }
 
 .temp {
-    font-size: 5rem;
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+  font-size: 5rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
 }
 
 .city {
-    font-size: 1.6rem;
-    font-weight: 400;
-    margin: 0;
-    opacity: 0.9;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.95;
 }
 
+.time-of-day {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.local-time {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
 
 .details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 30px;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .details .col {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(25px);
-    padding: 18px;
-    border-radius: 18px;
-    flex: 1;
-    transition: 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.055);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 18px;
+  border-radius: 18px;
+  flex: 1;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .details .col:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .details .col img {
-    width: 38px;
-    height: 38px;
+  width: 38px;
+  height: 38px;
 }
 
 .details .col p {
-    margin: 0;
-    font-size: 1rem;
-    
+  margin: 0;
+  font-size: 1rem;
 }
 
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+.error {
+  margin-top: 12px;
+  color: #ffdddd;
+  font-weight: 500;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.hide {
+  display: none;
 }
-
-
-
 
 footer {
   position: fixed;
-  bottom: 0;
-  font-weight: lighter;
+  bottom: 8px;
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
 
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (max-width: 480px) {
-    .searchbar {
-        padding: 4px;
-    }
-    .searchbar input {
-        padding: 10px 12px;
-        font-size: 14px;
-    }
-    .temp {
-        font-size: 4rem;
-    }
-    .city {
-        font-size: 1.2rem;
-    }
-    .details {
-        flex-direction: column;
-    }
-    .details .col {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-    }
+  .searchbar input {
+    font-size: 14px;
+  }
+
+  .temp {
+    font-size: 4rem;
+  }
+
+  .city {
+    font-size: 1.3rem;
+  }
+
+  .details {
+    flex-direction: column;
+  }
 }
+
